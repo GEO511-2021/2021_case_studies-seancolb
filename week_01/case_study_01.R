@@ -26,7 +26,7 @@ install.packages("ggplot2")
 library(ggplot2)
 
 #Set GG PLot
-plot_1 <- ggplot(data=iris, aes(Petal.Length))+ geom_histogram(fill= "red")+
+plot_1 <- ggplot(data=iris, aes(Petal.Length))+ geom_histogram(fill= "green")+
   title("Petal Length Distribution")
 
 #Print Plot 1
