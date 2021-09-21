@@ -15,7 +15,7 @@ Countries_No_Kuwait <-gapminder%>%
   filter(country != "kuwait")
 
 #change pop
-gapminder%>% mutate(pop= pop/100000)
+Countries_No_Kuwait%>% mutate(pop= pop/100000)
 
 #plot
 ggplot(Countries_No_Kuwait, aes(x= lifeExp, y=gdpPercap, color= continent, size=pop))+
