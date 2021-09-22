@@ -28,3 +28,20 @@ Wealth_Life_Expectancy <- ggplot(Countries_No_Kuwait, aes(x= lifeExp, y=gdpPerca
   theme_bw()+
   labs(title= "Wealth and Life Expectancy", x= "Life Expectancy", y= "GDP per Capita", color= "Continent", size= "Population in 100k")
 
+#Print new plot
+Wealth_Life_Expectancy
+#Set up data for Plot 2
+gapminder_continent<- gapminder%>%
+  group_by(continent, year)%>%
+  summarize(gdpPercapweighted = weighted.mean(x = gdpPercap, w = pop),
+            pop = sum(as.numeric(pop)))
+#display new dataset
+gapminder_continent
+#plot the second dataset
+ggplot(gapminder_continent, aes(x=year, y=gdpPercapweighted), color=continent, size=pop/100000)+ 
+  geom_point()+
+  facet_wrap(~continent, nrow=1)+
+  geom_line()+
+  theme_bw()
+  
+
