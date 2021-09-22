@@ -17,11 +17,14 @@ Countries_No_Kuwait <-gapminder%>%
 #change pop
 Countries_No_Kuwait%>% mutate(pop= pop/100000)
 
+#check what labels do what
+?labs()
+
 #plot
-ggplot(Countries_No_Kuwait, aes(x= lifeExp, y=gdpPercap, color= continent, size=pop/100000))+
+Wealth_Life_Expectancy <- ggplot(Countries_No_Kuwait, aes(x= lifeExp, y=gdpPercap, color= continent, size=pop/100000))+
   geom_point()+  
   facet_wrap(~year, nrow=1)+ 
   scale_y_continuous(trans = "sqrt")+
-  labs(title= "Wealth and Life Expectancy")
+  theme_bw()+
+  labs(title= "Wealth and Life Expectancy", x= "Life Expectancy", y= "GDP per Capita", color= "Continent", size= "Population in 100k")
 
-    
