@@ -18,5 +18,10 @@ Countries_No_Kuwait <-gapminder%>%
 Countries_No_Kuwait%>% mutate(pop= pop/100000)
 
 #plot
-ggplot(Countries_No_Kuwait, aes(x= lifeExp, y=gdpPercap, color= continent, size=pop))+
-  geom_point()
+ggplot(Countries_No_Kuwait, aes(x= lifeExp, y=gdpPercap, color= continent, size=pop/100000))+
+  geom_point()+  
+  facet_wrap(~year, nrow=1)+ 
+  scale_y_continuous(trans = "sqrt")+
+  labs(title= "Wealth and Life Expectancy")
+
+    
