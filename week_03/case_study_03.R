@@ -49,12 +49,11 @@ ggplot(gapminder_continent, aes(x=year, y=gdpPercapweighted), color=continent, s
 ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
   geom_line(aes(group=country, size = .05)) +
   geom_point()+
-  geom_line(data= gapminder_continent, mapping= aes(year, gdpPercapweighted, col= "black" ))+
-  geom_point(data= gapminder_continent, mapping= aes(year, gdpPercapweighted, col= "black"))+
+  geom_line(data= gapminder_continent, mapping= aes(year, gdpPercapweighted, size= .1), col= "black" )+
+  geom_point(data= gapminder_continent, mapping= aes(year, gdpPercapweighted), col= "black")+
   facet_wrap(~continent, nrow=1) +
   theme_bw() +
   labs( x= "Year", y = "GDP per Capita", size = "Population (100k)")
 
 #Save as png file
-png(filename = "Wealth_Over_Time.png", width= 15, units = "in", res = 300)
-  
+ggsave("Wealth_over_time.png", width= 15, height= 5, units= "in")
