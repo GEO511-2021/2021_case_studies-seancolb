@@ -55,5 +55,6 @@ ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000))
   theme_bw() +
   labs( x= "Year", y = "GDP per Capita", size = "Population (100k)")
 
-
+#Save as png file
+png(filename = "Wealth_Over_Time.png", width= 15, units = "in", res = 300)
   
