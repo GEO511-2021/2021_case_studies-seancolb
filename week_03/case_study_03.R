@@ -37,11 +37,21 @@ gapminder_continent<- gapminder%>%
             pop = sum(as.numeric(pop)))
 #display new dataset
 gapminder_continent
+
 #plot the second dataset
 ggplot(gapminder_continent, aes(x=year, y=gdpPercapweighted), color=continent, size=pop/100000)+ 
   geom_point()+
   facet_wrap(~continent, nrow=1)+
-  geom_line()+
+  geom_line(data=gapminder_continent)+
   theme_bw()
-  
+
+#Combine both plots together
+ggplot(gapminder, aes(x = year, y =gdpPercap, color=continent, size=pop/100000)) +
+  geom_line(aes(group=country, size = .1)) +
+  geom_point() +
+  geom_line(gapminder_continent, mapping=aes(x=year, y=gdpPercapweighted))+
+  geom_point(gapminder_continent,mapping=aes(x=year, y=gdpPercapweighted))+
+  facet_wrap(~continent, nrow=1) +
+  theme_bw() +
+  labs( x= "Year", y = "GDP per Capita", size = "Population (100k)")
 
