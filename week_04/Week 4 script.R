@@ -12,10 +12,9 @@ furthest_distance<- flights%>%
   arrange(desc(distance))%>%
   slice_max(distance, n=1)%>%
   count(origin, dest, distance)%>%
-  left_join(airports, c("dest"= "faa"))
- 
-#select destination name column
-furthest_distance%>%
+  left_join(airports, c("dest"= "faa"))%>%
   select(name)
 
-#convert dataframe to single character value
+#convert data frame to single character value and rename
+farthest_airport <- as.character(farthest_airport)
+
