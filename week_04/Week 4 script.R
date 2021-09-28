@@ -16,5 +16,5 @@ furthest_distance<- flights%>%
   select(name)
 
 #convert data frame to single character value and rename
-farthest_airport <- as.character(farthest_airport)
+farthest_airport <- as.character(furthest_distance)
 
