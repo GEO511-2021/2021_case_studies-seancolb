@@ -1,10 +1,12 @@
+#Install new packages
+install.packages("ncdf4")
 #Load in Libraries
 library(raster)
 library(sp)
 library(spData)
 library(tidyverse)
 library(sf)
-
+library(ncdf4)
 #Load Data in
 data(world)
 tmax_monthly <- getData(name= "worldclim", var="tmax", res=10)
@@ -33,4 +35,5 @@ tmax_annual <- max(tmax_monthly)
 tmax <- names(tmax_annual)
 
 #Calculate and plot maximum temperature per country
+
 
