@@ -7,6 +7,8 @@ library(spData)
 library(tidyverse)
 library(sf)
 library(ncdf4)
+library(ggplot2)
+
 #Load Data in
 data(world)
 tmax_monthly <- getData(name= "worldclim", var="tmax", res=10)
@@ -22,7 +24,7 @@ Countries_sp <- as(Countries, "Spatial")
 
 #Peek at Temperature
 str(tmax_monthly, max.level=2)
-tmax_monthly
+tmax_monthly<- getData(name = "worldclim", var= "tmax", res=10)
 
 #What does gain do?
 ?gain()
@@ -32,8 +34,25 @@ gain(tmax_monthly)= .1
 
 #Find max annual
 tmax_annual <- max(tmax_monthly)
-tmax <- names(tmax_annual)
+names(tmax_annual)<- "tmax"
 
 #Calculate and plot maximum temperature per country
+polygon_max <- raster::extract(tmax_annual, Countries_sp, fun=max, na.rm=T, small=T, sp=T)%>%
+st_as_sf()
 
+#plot it!
+ggplot(polygon_max)+
+  geom_sf(aes(fill= tmax))+
+  scale_fill_viridis_c(name="Annual\nMaximum\nTemperature (C)")+
+  theme(legend.position = 'bottom')
 
+#Find the hottest country in each continent
+hottest_country <- polygon_max%>%
+  group_by(continent)%>%
+  top_n(1, tmax)%>%
+  select(name_long, continent, tmax)%>%
+  arrange(desc(tmax))%>%
+  st_set_geometry(NULL)
+
+#look at hottest country data
+view(hottest_country)
