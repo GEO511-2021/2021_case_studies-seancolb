@@ -1,14 +1,11 @@
-#Load Libraries in
 library(tidyverse)
 library(reprex)
 library(sf)
 library(spData)
 
-#Load Data in 
 data(world)
 
-#Generate Figure
-ggplot(world,aes(x=gdpPercap, y=continent, color=continent))+
-  geom_density(alpha=0.5,color=F)
+ggplot(world,aes(x=gdpPercap, fill=continent, color=continent))+
+  geom_density(alpha=0.5)
 
 reprex(venue="gh")
