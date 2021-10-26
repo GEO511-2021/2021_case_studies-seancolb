@@ -29,8 +29,7 @@ ylab("Manual Loa Annual Mean CO_2(ppm)")
 #Top 5 Mean Table
 Top5 <- Data%>%
 arrange(desc(mean))%>%
-top_n(mean, n=5)%>%
-kable()
+top_n(mean, n=5)
 
 #Print Top5
 Top5
