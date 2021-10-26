@@ -8,9 +8,7 @@ output:
  powerpoint_presentation: default
  word_document: default
 ---
-```[r]
-install.packages()
-
+```{r}
 #Load Packages
 library(tidyverse)
 library(dplyr)
@@ -37,6 +35,6 @@ Top5
 
 #Knit
 knitr::kable(Top5)
-
+```
 
 
