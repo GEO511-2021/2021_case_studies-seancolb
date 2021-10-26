@@ -1,6 +1,6 @@
 Case Study 08
 ================
-Your Name
+Sean Colby
 August 1, 2020
 
 ``` r
