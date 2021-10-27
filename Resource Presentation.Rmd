@@ -69,5 +69,14 @@ Garlic_Mustard <- filter(Invasive_NY, COMMON_NAME == "garlic mustard")
 * `Predict()- Generates raster showing expected locations`
 * `NicheOverlap()- Finds habitats where two species occurence overlap`
 
-##Example
+## Example
+![](Species_Distribution.jpeg)
+
+## Meet The Authors
+### Robert J. Hijmans, Steven Phillips, John Leathwick and Jane Elith
+* Hijmans- Researcher for Department of Environmental Science and Policy at University of California
+* Phillips- Researcher that has worked for multiple companies and universities and is currently employed by the American Museum of Natural History
+* Leathwick- Researcher for Department of Conservation at the University of Canterbury but has become a self-employed conservation consultant since 2014
+* Elith- Professor and Model Developer of Botany and plant distributions at University of Melbourne. 
+
 
