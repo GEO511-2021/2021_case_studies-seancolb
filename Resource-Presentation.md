@@ -14,9 +14,7 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 ## rFIA Package 
 ![](https://besjournals.onlinelibrary.wiley.com/cms/asset/2b0ad9ee-06e0-44e7-86c9-be062d06e8d3/jpe13504-fig-0001-m.png){width=50%}
@@ -43,7 +41,8 @@ Some of the main functions:
 * `Tpa()- Estimates abundance of standing trees`
 
 ## Example Run
-```{r, eval=F, message=F}
+
+```r
 #Load the Library
 library(rFIA)
 library(tidyverse)
