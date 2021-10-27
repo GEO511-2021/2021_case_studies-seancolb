@@ -60,5 +60,14 @@ Garlic_Mustard <- filter(Invasive_NY, COMMON_NAME == "garlic mustard")
 * Garlic Mustard Percentage Graphed Over Time
 * `NYS Records Between 2007-2019`
 
+## Dismo
+### rFIA Data can be combined with other occurence data to generate predictive maps
 
+* Lets look at some of the Dismo functions...
+* `Bioclim()- Algorithm to find similar environments`
+* `Evaluate()- Evaluates accuracy of the model`
+* `Predict()- Generates raster showing expected locations`
+* `NicheOverlap()- Finds habitats where two species occurence overlap`
+
+##Example
 
