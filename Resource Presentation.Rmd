@@ -67,7 +67,7 @@ Garlic_Mustard <- filter(Invasive_NY, COMMON_NAME == "garlic mustard")
 * `Bioclim()- Algorithm to find similar environments`
 * `Evaluate()- Evaluates accuracy of the model`
 * `Predict()- Generates raster showing expected locations`
-* `NicheOverlap()- Finds habitats where two species occurence overlap`
+* `NicheOverlap()- Finds habitats where species overlap
 
 ## Example
 ![](Species_Distribution.jpeg)
@@ -79,4 +79,15 @@ Garlic_Mustard <- filter(Invasive_NY, COMMON_NAME == "garlic mustard")
 * Leathwick- Researcher for Department of Conservation at the University of Canterbury but has become a self-employed conservation consultant since 2014
 * Elith- Professor and Model Developer of Botany and plant distributions at University of Melbourne. 
 
+## Hijmans
+![](Hijmans.png)
+
+## Phillips
+![](Phillips.png)
+
+## Leathwick
+![](Leathwick.png)
+
+## Elith
+![](Elith.jpg)
 
