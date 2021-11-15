@@ -1,13 +1,13 @@
-<<<<<<< HEAD
+
 ---
 title: "Case Study 08"
 author: Sean Colby
 date: August 1, 2020
 output: 
- html_document: default
- github_document: default
- powerpoint_presentation: default
- word_document: default
+html_document: default
+github_document: default
+powerpoint_presentation: default
+word_document: default
 ---
 ```{r}
 #Load Packages
