@@ -4,15 +4,13 @@ author: Sean Colby
 date: August 1, 2020
 output: github_document
 ---
-
+ 
 
 #Install New Packages
 install.packages("mapview")
 install.packages("foreach")
 install.packages("doParallel")
 install.packages("tidycensus")
-install.packages("tidyverse")
-```{r}
 #Load in Packages
 library(tidyverse)
 library(spData)
@@ -21,16 +19,13 @@ library(mapview)
 library(foreach)
 library(doParallel)
 library(raster)
-library(magrittr)
-library(knitr)
-library(dplyr)
 registerDoParallel(4)
 getDoParWorkers()
-```
+
 #Load Census and Key
 library(tidycensus)
 census_api_key("c8c3ddff45dcf65f4888750b07878a707cdc25d0", install = TRUE)
-```{r}
+
 #Load Buffalo Demographics
 library(tidycensus)
 racevars <- c(White = "P005003", 
@@ -44,28 +39,23 @@ erie <- get_decennial(geography = "block", variables = racevars,
                   summary_var = "P001001", cache_table=T) 
 
 #Crop county-level data
-buffalo<- erie%>%st_crop(c(xmin=-78.9,xmax=-78.85,ymin=42.888,ymax=42.92))
+county<- st_crop(erie, xmin=-78.9,xmax=-78.85,ymin=42.888,ymax=42.92)
 
 #Convert Racial Variable
-r<- as.factor(erie$variable)
+race<- as.factor(erie$variable)
+#For Each Function to seperate by race
+foreach(y=x,i=1:4,.combine=‘rbind’)%do%
+st_sample(size=.$value)
 
-#For Each Function to separate by race
-buffalo_point<- foreach(r=unique(buffalo$variable),.combine=rbind)%dopar%{filter(buffalo,variable==r)%>%
-st_sample(size=.$value)%>%
-st_as_sf()%>%
-mutate(variable=r)}
+library(dplyr)
+#QIngqing code
+generate_points <- function(df, r){df%>%
+    filter(., variable==r)%>%  
+    st_sample(., size = .$value)%>%  
+    st_as_sf()%>% 
+    mutate(variable = r)%>% 
+    rename(geometry = x)}
 
-#Alternate Approach to define the function prior
-generate_points <- function(buffalo, r){
-  buffalo %>%  # df is the reduced enri dataset
-    filter(., variable==r) %>%  # filter by race
-    st_sample(., size = .$value) %>% # generate random points 
-    st_as_sf() %>%  # convert to sf object 
-    mutate(variable = r) %>% # add race variable
-    rename(geometry = x) # rename the geometry column 
-}
+# parallel computing
+foreach(r=unique(county$variable),.combine=rbind) %dopar% {generate_points(county, race)}
 
-foreach(r=unique(buffalo$variable),.combine=rbind) %dopar% {generate_points(buffalo, r)}
-
-
-```
