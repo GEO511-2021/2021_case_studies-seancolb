@@ -4,4 +4,56 @@ author: Your Name
 date: August 1, 2020
 output: github_document
 ---
- 
+
+```{r}
+#Install and load packages
+install.packages("sf")
+install.packages("spData")
+install.packages("tidyverse")
+
+#Load Library
+library(sf)
+library(spData)
+library(tidyverse)
+library(units)
+
+#Load the data
+data(world)
+data(us_states)
+plot(world)
+```
+
+```{r}
+#Set Projection 
+albers="+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
+
+#Transform Projections
+states_albers <- st_transform(us_states, albers)
+world_albers <- st_transform(world, albers)
+#Look at what comprises states to call NY
+str(us_states, max.level=2)
+
+#Set NY as seperate entity
+NY = states_albers[states_albers$NAME == "New York",]
+```
+
+```{r}
+#Create Canada Buffer using World Data
+Canada= world_albers[world_albers$name_long == "Canada",]%>% st_buffer(dist=10000)
+
+
+#Find intersection between both
+Border<- st_intersection(Canada, NY)
+
+#Plot intersection 
+ggplot()+
+  geom_sf(data=NY)+
+  geom_sf(data= Border, fill="red")
+  
+#What is the area?
+area <- st_area(Border)%>%
+  set_units(km^2)
+
+#display area 
+area
+```
