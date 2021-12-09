@@ -1,12 +1,3 @@
----
-title: "Case Study 07"
-author: Sean Colby
-date: August 1, 2020
-output: github_document
----
-
-## Getting Help
-```{r}
 #Load Library
 library(tidyverse)
 library(reprex)
@@ -22,4 +13,3 @@ ggplot(world,aes(x=gdpPercap, fill=continent, color=continent))+
 
 #Reprex
 reprex(venue="gh")
-```

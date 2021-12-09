@@ -1,11 +1,5 @@
----
-title: "Case Study 05"
-author: Sean Colby
-date: August 1, 2020
-output: github_document
----
+#Beware the Canadians Lab
 
-```{r}
 #Install and load packages
 install.packages("sf")
 install.packages("spData")
@@ -21,9 +15,7 @@ library(units)
 data(world)
 data(us_states)
 plot(world)
-```
 
-```{r}
 #Set Projection 
 albers="+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 
@@ -35,9 +27,7 @@ str(us_states, max.level=2)
 
 #Set NY as seperate entity
 NY = states_albers[states_albers$NAME == "New York",]
-```
 
-```{r}
 #Create Canada Buffer using World Data
 Canada= world_albers[world_albers$name_long == "Canada",]%>% st_buffer(dist=10000)
 
@@ -56,4 +46,3 @@ area <- st_area(Border)%>%
 
 #display area 
 area
-```

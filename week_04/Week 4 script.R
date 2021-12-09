@@ -1,15 +1,4 @@
----
-title: "Case Study 04"
-author: Sean Colby
-date: August 1, 2020
-output: github_document
----
 
-## Read in Data
-
-Use nyc flights dataset
-
-```{r}
 #Load Library
 library(tidyverse)
 library(nycflights13)
@@ -17,13 +6,7 @@ library(nycflights13)
 #View Dataset
 str(flights)
 str(airports)
-```
 
-## Arange data and seperate
-
-Comments
-
-```{r}
 #Arrange data using distance
 furthest_distance<- flights%>%
   arrange(desc(distance))%>%
@@ -37,4 +20,3 @@ farthest_airport <- as.character(furthest_distance)
 
 #Display the farthest airport
 farthest_airport
-```

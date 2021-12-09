@@ -1,11 +1,3 @@
----
-title: "Case Study 06"
-author: Sean Colby
-date: August 1, 2020
-output: github_document
----
-
-```{r}
 #Install new packages
 install.packages("ncdf4")
 #Load in Libraries
@@ -23,9 +15,7 @@ tmax_monthly <- getData(name= "worldclim", var="tmax", res=10)
 
 #Peek at world data
 str(world)
-```
 
-```{r}
 #Remove Antarctica 
 Countries <- filter(world, continent != "Antarctica")
 
@@ -38,9 +28,7 @@ tmax_monthly<- getData(name = "worldclim", var= "tmax", res=10)
 
 #What does gain do?
 ?gain()
-```
 
-```{r}
 #Convert Temperature Value
 gain(tmax_monthly)= .1
 
@@ -68,4 +56,3 @@ hottest_country <- polygon_max%>%
 
 #look at hottest country data
 view(hottest_country)
-```

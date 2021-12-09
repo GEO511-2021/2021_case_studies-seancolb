@@ -1,0 +1,68 @@
+---
+title: "Buckthorn SDM"
+output: html_document
+---
+
+# Introduction to problem/question
+One of the most important parts of invasive ecology is predicting where invasive species will be present through using environmental variables. This process is called species distribution modelling and serves as an important role in preventing and managing invasion. By using forest, land use, and anthropogenic variables the fundamental niche of an invasive species can be mapped and then can be evaluated by comparing the model to the realized niche (where the species has actually been recorded to occur). 
+
+# Problem / Question
+In particular I aim to answer the following questions regarding the invasive plant species Common Buckthorn:
+1.	What are the variables within a forest that make it suitable for buckthorn invasion?
+2.	When looking at sites that are rather similar, what slight differences in variables between these sites explain why one is invaded and the other is not?
+3.	Within invaded sites, what variables influence the relative abundance of buckthorn?
+4.	When applying these variables to making a predictive map, how well will this SDM fit or agree with occurrence data. 
+
+
+# Inspiring Examples
+
+## Example 1
+![](https://besjournals.onlinelibrary.wiley.com/cms/asset/2b0ad9ee-06e0-44e7-86c9-be062d06e8d3/jpe13504-fig-0001-m.png)
+
+Golivets et al. 2019
+
+This graphic displays how combining predictive environmental factors with FIA data can result in predicting invasive species richness across the north eastern US. 
+
+# Proposed data sources
+
+Personal Data:
+Description- Data that was gathered from 160 sites located among 4 counties in New York State. This data was originally gathered by Chris Larsen, David Robertson and others associated with SUNY Geneseo and SUNY University at Buffalo to study the mesophication of oak savannahs. This data was further modified by myself and Greg Bream. 
+•	Contains 160 forest sites 
+•	Uses point center quarter method to approximate stand densities of forest
+•	Contains soil, surrounding area data, and tree age as well
+•	Was further modified by myself to have 32 sites with recorded relative abundance of buckthorn, age of oldest buckthorn in site, canopy coverage and earth worm abundance. 
+
+FIA Data- 
+Description- Public domain data provided by the USDA forest service. Contains tree species presence and abundance, invasive species coverage, growth rates, mortality, forest composition, and forest age data. 
+•	In particular I am interested in the NY data on forestry to generate a predictive map of buckthorns fundamental niche. 
+•	This data can be broken down further to even the county level which can make for a higher accuracy predictive model. 
+
+USGS Data- 
+Description- Public domain data provided by the United States Geological Survey which contain both state and county level data on soils and elevation. 
+•	The soil data such as percentage of silt, sand, and clay, as well as drainage, elevation, and slope can be used in generating a predictive map of buckthorns range. 
+
+INaturalist Data-
+Description- Public domain data that is a compilation of community science observations of plants and animal species. 
+•	Buckthorn sightings data from this app could be used and applied to the predictive model for evaluating the performance of the predictive model. 
+
+
+# Proposed methods
+
+Q1. What are the variables within a forest that make it suitable for buckthorn invasion?
+Method: Run a logistic regression (Using glm() function in R) of the environmental variables to compare what best explain the presence of buckthorn. 
+Q2. When looking at sites that are rather similar, what slight differences in variables between these sites explain why one is invaded and the other is not?
+Method: Compare sites that have smallest Euclidean distance and then use logistic regression (using glm() function in R) to figure out which variables account for the difference as to why buckthorn is present at some places but not others. 
+Q3. Within invaded sites, what variables influence the relative abundance of buckthorn?
+Method: Use a linear regression model (using lm() function in R) of the invaded site variables such as canopy coverage, soil data, and earth worm abundance to see which variables effect the relative abundance. 
+Q4. When applying these variables to making a predictive map, how well will this SDM fit or agree with occurrence data. 
+Method: 
+1.	Figure out what the most important variables are using logistic regression (using glm() function)
+2.	Take those soil, climate, and terrain data from online sources and merge them together in one multi-band raster. 
+3.	Use my own data and other occurrence data from INaturalist to see if it matches the predictions that the multiband raster model makes (Using the functions predict() from the raster package)
+
+
+# Expected results
+
+I believe that my data will reflect that of other research where increased light, dry conditions, and slope will contribute to buckthorn's presence or absence. Additionally, when comparing my model with macro scale models of invasion, I believe that mine will be more accurate when it is applied to a larger scale. 
+
+I will generate graphs of New York State that show where predicted invasion will be as well as exhibit how well the predictive model fits with point occurence data. 

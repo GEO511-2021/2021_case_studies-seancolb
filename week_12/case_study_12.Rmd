@@ -4,4 +4,63 @@ author: Your Name
 date: August 1, 2020
 output: github_document
 ---
- 
+
+```{r}
+#Install New Packages
+install.packages("htmlwidgets")
+install.packages("widgetframe")
+install.packages("rnoaa")
+install.packages("xts")
+install.packages("dygraphs")
+#Load in the Libraries
+library(dplyr)
+library(ggplot2)
+library(ggmap)
+library(htmlwidgets)
+library(widgetframe)
+```
+
+```{r}
+#Load Libraries to download weather data
+library(tidyverse)
+library(rnoaa)
+library(xts)
+library(dygraphs)
+
+#Read in Weather Data
+d=meteo_tidy_ghcnd("USW00014733",
+                   date_min = "2016-01-01", 
+                   var = c("TMAX"),
+                   keep_flags=T) %>% 
+   mutate(date=as.Date(date),
+          tmax=as.numeric(tmax)/10)
+```
+
+```{r}
+#Lets Convert Data to xts
+xts_d<-xts(d$tmax, order.by = d$date)
+
+#Make Plot
+dygraph(xts_d)
+```
+
+```{r}
+#Modify Graph and look at subsection of it
+dygraph(xts_d, main="Daily Maximum Temperature in Buffalo, NY")%>%
+  dyRangeSelector(dateWindow=c("2020-01-01", "2020-10-31"))
+```
+
+```{r}
+#Generate Third Graph playing with other variables
+precip=meteo_tidy_ghcnd("USW00014733",
+                   date_min = "2019-01-01", 
+                   var = c("PRCP"),
+                   keep_flags=T)
+
+#Convert to XTS
+xts_p<-xts(precip$prcp, order.by = precip$date)
+
+#Make New Plot with New title and look at new subsection
+Buffalo_Winter<-dygraph(xts_p, main="Precipitation in Buffalo, NY", ylab= "precip in mm", xlab= "date", height = 600)%>%
+  dyRangeSelector(dateWindow=c("2019-01-01", "2019-04-30"))
+```
