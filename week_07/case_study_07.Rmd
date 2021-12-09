@@ -1,7 +1,25 @@
 ---
 title: "Case Study 07"
-author: Your Name
+author: Sean Colby
 date: August 1, 2020
 output: github_document
 ---
- 
+
+## Getting Help
+```{r}
+#Load Library
+library(tidyverse)
+library(reprex)
+library(sf)
+library(spData)
+
+#Load Data
+data(world)
+
+#Plot it
+ggplot(world,aes(x=gdpPercap, fill=continent, color=continent))+
+  geom_density(alpha=0.5)
+
+#Reprex
+reprex(venue="gh")
+```
